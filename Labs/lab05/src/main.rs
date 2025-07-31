@@ -115,7 +115,7 @@
 //     }else{
 //         Ok(sum_of_digits(n as u32))
 //     }
-// }
+// }yu
 
 // fn main(){
 //     let input = get_input("Enter a number: ");
