@@ -20,6 +20,8 @@
 //     println!("{}", _sum)
 // }
 
+
+//Part 3
 use std::io::Write;
 use std::io;
 
@@ -37,50 +39,40 @@ fn get_input(prompt: &str) -> String {
     input.trim().to_string()
 }
 
-fn generate_pascals_triangle(rows: usize) -> Vec<Vec<u32>> {
-    let mut triangle: Vec<Vec<u32>> = Vec::new();
-
-    for i in 0..rows {
-        let mut row: Vec<u32> = vec![1; i + 1];
-
-        for j in 1..i {
-            row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
-        }
-
-        triangle.push(row);
+fn factorial(n: u32) -> u32 {
+    if n == 0 {
+        1
+    } else {
+        n * factorial(n - 1)
     }
-
-    triangle
 }
 
-fn print_triangle(triangle: &Vec<Vec<u32>>) {
-    let total_rows = triangle.len();
+fn knr(row: u32, position: u32) -> u32 {
+    factorial(row) / (factorial(position) * factorial(row - position))
+}
 
-    for (i, row) in triangle.iter().enumerate() {
-        // Center align rows
-        let padding = " ".repeat(total_rows - i);
-        print!("{}", padding);
+fn make_pascal(rows: u32){
+    for i in 0..rows {
+        for _ in 0..rows - i - 1{
+            print!("  ");
+        }
 
-        for value in row {
-            print!("{} ", value);
+        for p in 0..=i {
+            print!("{:4}", knr(i, p));
         }
         println!();
     }
 }
 
-fn main() {
-    println!("Enter number of rows for Pascal's Triangle:");
-
-    let input = get_input("Input rows: ");
-
-    let rows: usize = match input.trim().parse() {
+fn main(){
+    let input = get_input("Enter rows for Pascal's Triangle: ");
+    
+    let rows: u32 = match input.parse() {
         Ok(num) => num,
         Err(_) => {
             println!("Invalid input.");
             return;
         }
     };
-
-    let triangle = generate_pascals_triangle(rows);
-    print_triangle(&triangle);
+    make_pascal(rows);
 }
