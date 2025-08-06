@@ -11,8 +11,9 @@
 //     let test_scores = vec![85, 92, 78, 96, 88, 73, 91, 84];
 //     let mut highest = test_scores.iter().max().unwrap();
 //     let mut lowest = test_scores.iter().min().unwrap();
-//     let mut is_90 = false;
+//     let mut is_90 = test_scores.contains(&90);
    
+//     println!("{}", is_90);
 //     println!("Highest score: {}", highest);
 //     println!("Lowest score: {}", lowest);
 
@@ -20,7 +21,7 @@
 //     println!("Last score = {}", test_scores[test_scores.len() - 1]);
 // }
 
-//1.3
+// //1.3
 // fn main() {
 //     let mut test_scores = vec![85, 92, 78, 96, 88, 73, 91, 84];
 //     test_scores.push(87);
@@ -48,6 +49,7 @@
 //     println!("There are {} scores over 85.", count);
 //     println!("Scores over 80: {:?}", over_80);
 // }
+
 
 //2 Warehouse Inventory Management
 use std::io::Write;
