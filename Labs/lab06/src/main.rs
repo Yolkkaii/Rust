@@ -77,9 +77,9 @@ fn enemy() -> Enemy {
     let mut rng = rand::thread_rng();
     let enemy_type = rng.gen_range(0..100);
     match enemy_type {
-        0..=59 => Enemy { name: "Rat".to_string(), hp: 10, power: 2, reward: 10},
-        60..=89 => Enemy { name: "Wolf".to_string(), hp: 20, power: 5, reward: 20},
-        _ => Enemy { name: "Boar".to_string(), hp: 30, power: 8, reward: 30},
+        0..=59 => Enemy {name: "Rat".to_string(), hp: 10, power: 2, reward: 10},
+        60..=89 => Enemy {name: "Wolf".to_string(), hp: 20, power: 5, reward: 20},
+        _ => Enemy {name: "Boar".to_string(), hp: 30, power: 8, reward: 30},
     }
 }
 
@@ -105,8 +105,7 @@ fn battle(player: &mut Player, enemy: &mut Enemy) {
 }
 
 fn main() {
-    let mut playing = true;
-    let mut player = Player { hp: 100, stamina: 10, power: 5, gold: 0 };
+    let mut player = Player {hp: 100, stamina: 50, power: 10, gold: 0};
     let mut rng = rand::thread_rng();
 
     println!("You started on an adventure in a dungeon.");
@@ -121,28 +120,38 @@ fn main() {
             _ => Encounter::Enemy,
         };
 
-        let direction = get_input("Which direction will you go (N/W/S/E)?\n");
+        let direction = get_input("Which direction will you go (N/W/S/E)?\n").to_uppercase();
 
         if direction.is_empty() {
-            println!("Invalid direction. Please enter N, W, S, or E.");
+            println!("Invalid direction. Please enter N, W, S, E");
             continue;
         }
-        
-        println!("\nYou move towards the {}.", direction);
+
+        match direction.as_str() {
+            "N" | "W" | "S" | "E" => {
+                println!("You move towards the {}.", direction);
+                player.stamina -= 1;
+            },
+            _ => {
+                println!("Invalid direction. Please enter N, W, S, or E");
+                continue;
+            }
+        }
 
         encounter(&mut player, &roll);
 
-        println!("Your current stats: HP: {}, Stamina: {}, Power: {}, Gold: {}", 
-                 player.hp, player.stamina, player.power, player.gold);
+        println!("Your current stats: HP: {}, Stamina: {}, Power: {}, Gold: {}", player.hp, player.stamina, player.power, player.gold);
         
         if player.hp <= 0 {
-            println!("Your journey ends here...\nGame over.");
+            println!("You bleed out to death...\nGame over.");
             break;
         }
         if player.gold >= 100{
             println!("You win!");
-            let playing = false;
             break;
+        }
+        if player.stamina <= 0 {
+            println!("Your body has ran out of energy...\nGame over.")
         }
     }
 }
