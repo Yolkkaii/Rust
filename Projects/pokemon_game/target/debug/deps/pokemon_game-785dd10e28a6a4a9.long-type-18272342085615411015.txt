@@ -1,0 +1,1 @@
+Map<Filter<Enumerate<std::slice::Iter<'_, MoveDef>>, {closure@src/main.rs:308:76: 308:83}>, {closure@src/main.rs:308:114: 308:121}>
