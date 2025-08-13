@@ -1,3 +1,4 @@
+//Week 1: UI Design
 use std::io::{stdout, Write};
 use crossterm::{
     cursor::MoveTo,
