@@ -184,6 +184,9 @@ fn intro(battle: u32, scr_width: usize, scr_height: usize,){
     execute!(stdout, MoveTo(0, 0)).unwrap();
 
     empty_screen();
+    intro_print("Please set terminal size to fit the screen size for best experience.", 8);
+
+    intro_clear();
 
     //Change the intro to a battle based on battles fought
 
