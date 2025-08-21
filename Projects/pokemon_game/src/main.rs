@@ -107,3 +107,5 @@ fn main() {
         &["Thunderbolt", "Quick Attack", "Iron Tail", "Volt Tackle"],
     );
 }
+
+fn random_M()

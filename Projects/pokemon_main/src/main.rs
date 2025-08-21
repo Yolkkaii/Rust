@@ -18,15 +18,15 @@ const Screen_Width: usize = 80;
 const Screen_Height: usize = 30;
 
 const Electripuff: [&str; 4] = [
-    r#" (\__/)"#, r#" (o ⚡ o) "#, r#" (  -  )~"#, r#"  UU  UU"#,
+    r#" (\__/) "#, r#"(o ⚡ o) "#, r#"(  -  )~"#, r#" UU  UU "#,
 ];
 
 const Chlorowl: [&str; 4] = [
-    r#"(\_._/)"#, r#"( -w- ) 🌱"#, r#"(  V  )"#, r#" ^^ ^^"#,
+    r#"(\_._/)  "#, r#"( -w- ) 🌱"#, r#"(  V  )  "#, r#" ^^ ^^   "#,
 ];
 
 const Norn: [&str; 3] = [
-    r#"( o.o )"#, r#"<(   )> "#, r#" UU UU"#,
+    r#"( o.o )"#, r#"<(   )>"#, r#"  U U  "#,
 ];
 
 const Magifish: [&str; 1] = [
@@ -34,20 +34,11 @@ const Magifish: [&str; 1] = [
 ];
 
 const Flamalink: [&str; 4] = [
-    r#" (  ) "#, r#"(o_o )  ~🔥"#, r#"<)   )╯"#, r#" /   \"#,
+    r#"(  )     "#, r#"(o_o )  ~🔥"#, r#"<)   )╯   "#, r#" /   \    "#,
 ];
 
 fn screen(
-    scr_width: usize,
-    scr_height: usize,
-    p_name: &str,
-    p_art: &[&str],
-    p_max_hp: u32,
-    p_hp: u32,
-    opp_name: &str,
-    opp_art: &[&str],
-    opp_max_hp: u32,
-    opp_hp: u32,
+    scr_width: usize, scr_height: usize, p_name: &str, p_art: &[&str], p_max_hp: u32, p_hp: u32, opp_name: &str, opp_art: &[&str], opp_max_hp: u32, opp_hp: u32,
 ) {
     let mut stdout = stdout();
     execute!(stdout, MoveTo(0, 0)).unwrap();
@@ -83,7 +74,7 @@ fn screen(
     }
 
     for line in p_art.iter() {
-        println!("| {:<width$} |", line, width = scr_width - 2);
+        println!("| {:<width$} |", line, width = scr_width -2);
     }
 
     println!("| {:width$} |", "", width = scr_width - 2);
@@ -100,7 +91,7 @@ fn screen(
         p_hp,
         p_max_hp,
         "",
-        width = scr_width - 15 - hp_bar_width
+        width = scr_width - 14 - hp_bar_width
     );
 
     println!("+{}+", "-".repeat(scr_width));
@@ -174,7 +165,7 @@ fn battle_anim() {
         stdout().flush().unwrap();
         thread::sleep(Duration::from_millis(15));
     }
-    thread::sleep(Duration::from_secs(1));
+    thread::sleep(Duration::from_millis(500));
 
     execute!(stdout(),terminal::Clear(ClearType::All)).unwrap();
 }
@@ -218,34 +209,64 @@ fn intro(battle: u32, scr_width: usize, scr_height: usize,){
 
         intro_clear();
 
-        intro_print("Your first battle starts here", 6);
+        intro_print("Your first battle starts here.", 6);
         thread::sleep(Duration::from_secs(1));
 
-
         dot_waiting(8);
-        intro_print("Against little timmy", 10);
+        intro_print("Against little Timmy.", 10);
         thread::sleep(Duration::from_secs(2));
-        intro_print("Against little timmy, NOW!", 10);
+        intro_clear();
+        intro_print("NN   NN   OOOOO   W     W   !!!", 6);
+        intro_print("NNN  NN  O     O  W     W   !!!", 7) ;
+        intro_print("NN N NN  O     O  W  W  W   !!!", 8);
+        intro_print("NN  NNN  O     O   W W W       ", 9);        
+        intro_print("NN   NN   OOOOO     W W     !!! ", 10);
         thread::sleep(Duration::from_secs(1));
 
         battle_anim();
-        
-        //Continue with Battle System
-
-        //--Placeholder simulation code--\\
-        empty_screen();
-
     }
 }
 
 //Week 3: Battle!
+struct Trainer {
+    name: String, money: i32, m_owned: i32, battles: i32, potion: i32, revive: i32,
+}
+
+struct Monster {
+    m_name: String, art: Vec<&'static str>, m_type: String, max_hp: i32, c_hp: i32, stamina: i32, skill_set: i32,
+}
+
+fn opp_random(battles: u32) -> Trainer {
+    let mut rng = rand::thread_rng();
+    let chance = rng.gen_range(0, 100);
+    if battles == 0 {
+        match chance {
+            0..=59 => Trainer {m_owned: 1},
+            _ => Trainer {m_owned: 2},
+        }
+    }if battle == 1{
+        match chance {
+            0..=19 => Trainer {m_owned: 1},
+            20..74 => Trainer {m_owned: 2},
+            _ => Trainer {m_owned: 3},
+        }
+    }if battle == 2{
+        match chance {
+            0..=9 => Trainer {m_owned: 3},
+            10..29 => Trainer {m_owned: 4},
+            _ => Trainer {m_owned: 5},
+        }
+    }
+}
+
+
 
 fn main(){
     let mut battle = 0;
 
     intro(battle, Screen_Width, Screen_Height);
 
-    //screen(Screen_Width, Screen_Height, "Electripuff", &Electripuff, 50, 35, "Norn", &Norn, 65, 24);
+    screen(Screen_Width, Screen_Height, "Electripuff", &Electripuff, 50, 35, "Electripuff", &Electripuff, 65, 24);
 
     //--For testing and bug fixing purposes--\\
     thread::sleep(Duration::from_secs(30));
