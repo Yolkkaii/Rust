@@ -21,8 +21,8 @@ impl BoxedStack {
     }
 
     pub fn pop(&mut self) -> Option<i32> {
-        let old_top = std::mem::replace(&mut self.top, Box::new(Node::Nil));
-        match *old_top {
+        let top = std::mem::replace(&mut self.top, Box::new(Node::Nil));
+        match *top {
             Node::Cons(value, next_node) => {
                 self.top = next_node;
                 Some(value)
