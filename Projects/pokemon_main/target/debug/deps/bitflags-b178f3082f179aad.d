@@ -1,0 +1,11 @@
+/Users/yolkai/Documents/GitHub/rust/Projects/pokemon_main/target/debug/deps/bitflags-b178f3082f179aad.d: /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/lib.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/iter.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/parser.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/traits.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/public.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/internal.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/external.rs
+
+/Users/yolkai/Documents/GitHub/rust/Projects/pokemon_main/target/debug/deps/libbitflags-b178f3082f179aad.rmeta: /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/lib.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/iter.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/parser.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/traits.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/public.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/internal.rs /Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/external.rs
+
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/lib.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/iter.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/parser.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/traits.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/public.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/internal.rs:
+/Users/yolkai/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.9.2/src/external.rs:
