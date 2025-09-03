@@ -1,78 +1,95 @@
-// fn main() {
-//     let arr = [5, 10, 15, 20, 25];
-//     let slice = &arr[1..4];
-//     let tuple = ("Rust", 2024, true);
+//Hello Ice
+// use iced::widget::text;
+// use iced::{Element, Sandbox, Settings, Theme};
 
-//     for x in slice {
-//         println!("{}", x);
-//     };
-
-//     println!("{} {} {}", tuple.0, tuple.1, tuple.2);
-
-//     let mut _count = 1;
-//     let mut _sum = 0;
-
-//     while _count <= 10 {
-//         _sum += _count;
-//         _count += 1;
-//     }
-
-//     println!("{}", _sum)
+// pub fn main() -> iced::Result {
+//     Hello::run(Settings::default())
 // }
 
+// struct Hello;
 
-//Part 3
-use std::io::Write;
-use std::io;
+// impl Sandbox for Hello {
+//     type Message = ();  // Message represents events (e.g., button clicks).
+//                         // () means no messages (because our app is static).
+//     fn new() -> Self {  // Called at startup.
+//         Self            // Returns initial state → here, just Hello.
+//     }
 
-fn get_input(prompt: &str) -> String {
-    print!("{}", prompt);
+//     fn title(&self) -> String {         // Defines the window’s title bar text.
+//         String::from("Iced • Hello")
+//     }
 
-    io::stdout().flush().unwrap();
+//     fn theme(&self) -> Theme {     // Sets the app’s theme → Light mode.
+//         Theme::Dark               // Could also be Theme::Dark or Light
+//     }
 
-    let mut input = String::new();
+//     fn update(&mut self, _message: Self::Message) { // Runs when messages (events) arrive.
+//         // Nothing to update                        // Since Message = (), nothing ever arrives → no updates needed.
+//     }           
 
-    io::stdin()
-    .read_line(&mut input)
-    .expect("Failed to read line");
+//     fn view(&self) -> Element<Self::Message> {      // Draw widgets. Builds the UI tree for each frame.
+//         text("Hello, Iced!").into()                 // Returns a widget (here: a simple text).
+//     }                                               // .into() converts the Text widget into a generic Element.
+// }
 
-    input.trim().to_string()
+//Ice Counter
+use iced::widget::{button, column, row, text};
+use iced::{Alignment, Element, Sandbox, Settings, Theme};
+// button, column, row, text → common UI widgets.
+// Alignment → controls layout alignment.
+// Element → the generic container type for any widget tree.
+// Sandbox → the simple synchronous app trait.
+// Settings, Theme → window setup and light/dark style.
+
+pub fn main() -> iced::Result {
+    Counter::run(Settings::default())
 }
 
-fn factorial(n: u32) -> u32 {
-    if n == 0 {
-        1
-    } else {
-        n * factorial(n - 1)
+#[derive(Default)] // #[derive(Default)] lets us create a Counter with value = 0.
+struct Counter {
+    value: i32,
+}
+
+#[derive(Debug, Clone, Copy)] // Clone + Copy so messages are lightweight and easy to reuse.
+enum Message {
+    Increment,
+    Decrement,
+}
+
+impl Sandbox for Counter {  
+    type Message = Message; // Tells Iced this app will use Message as its event type.
+
+    fn new() -> Self {
+        Self::default()
     }
-}
 
-fn knr(row: u32, position: u32) -> u32 {
-    factorial(row) / (factorial(position) * factorial(row - position))
-}
-
-fn make_pascal(rows: u32){
-    for i in 0..rows {
-        for _ in 0..rows - i - 1{
-            print!("  ");
-        }
-
-        for p in 0..=i {
-            print!("{:4}", knr(i, p));
-        }
-        println!();
+    fn title(&self) -> String {
+        String::from("Iced • Counter (Sandbox)")
     }
-}
 
-fn main(){
-    let input = get_input("Enter rows for Pascal's Triangle: ");
-    
-    let rows: u32 = match input.parse() {
-        Ok(num) => num,
-        Err(_) => {
-            println!("Invalid input.");
-            return;
+    fn theme(&self) -> Theme {
+        Theme::Light
+    }
+
+    fn update(&mut self, message: Self::Message) {      // Runs whenever a Message is triggered.
+        match message {                                 // Changes the app’s state: increases or decreases the count.
+            Message::Increment => self.value += 1,      // After updating, Iced automatically re-renders the view.
+            Message::Decrement => self.value -= 1,
         }
-    };
-    make_pascal(rows);
+    }
+
+    fn view(&self) -> Element<Self::Message> {
+        let dec = button(text("-")).on_press(Message::Decrement);
+        let inc = button(text("+")).on_press(Message::Increment);
+
+        column![                                        // A column containing a title and a row.
+            text("Counter").size(32),                   // The row has:
+            row![dec, text(self.value).size(28), inc]   // A decrement button "-".
+                .spacing(12)                            // he current value (self.value).
+                .align_items(Alignment::Center),        // An increment button "+".
+        ]
+        .padding(24)
+        .spacing(16)
+        .into()
+    }
 }
