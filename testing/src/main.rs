@@ -64,28 +64,28 @@
 //     }
 // }
 
-//Practice: Trait, Implementation
+// //Practice: Trait, Implementation
 
-trait HasArea {
-    fn area(&self) -> f64;
-}
+// trait HasArea {
+//     fn area(&self) -> f64;
+// }
 
-struct Rectangle{
-    width: f64,
-    height: f64,
-}
+// struct Rectangle{
+//     width: f64,
+//     height: f64,
+// }
 
-impl HasArea for Rectangle {
-    fn area(&self) -> f64 {
-        self.width * self.height
-    }
-}
+// impl HasArea for Rectangle {
+//     fn area(&self) -> f64 {
+//         self.width * self.height
+//     }
+// }
 
-fn print_area<T: HasArea>(shape: T) {
-    println!("Area: {}", shape.area())
-}
+// fn print_area<T: HasArea>(shape: T) {
+//     println!("Area: {}", shape.area())
+// }
 
-fn main(){
-    let r = Rectangle { width: 4.0, height: 5.0};
-    print_area(r);
-}
+// fn main(){
+//     let r = Rectangle { width: 4.0, height: 5.0};
+//     print_area(r);
+// }
